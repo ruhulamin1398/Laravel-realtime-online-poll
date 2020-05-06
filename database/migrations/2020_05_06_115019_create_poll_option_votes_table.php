@@ -15,10 +15,10 @@ class CreatePollOptionVotesTable extends Migration
     {
         Schema::create('poll_option_votes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('poll_option_id');
-            $table->string('ip');
+            // $table->unsignedBigInteger('poll_option_id');
+            // $table->string('ip');
             $table->timestamps();
-            $table->foreign('poll_option_id')->references('id')->on('poll_options');
+            // $table->foreign('poll_option_id')->references('id')->on('poll_options');
         });
     }
 

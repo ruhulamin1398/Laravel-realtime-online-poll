@@ -17,6 +17,7 @@ class CreatePollOptionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('poll_id');
             $table->string('name');
+            $table->unsignedBigInteger('count');
             $table->timestamps();
             $table->foreign('poll_id')->references('id')->on('polls');
         });
