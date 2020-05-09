@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\poll;
+use App\pollOption;
+
 use Illuminate\Http\Request;
 
 class PollController extends Controller
@@ -35,7 +37,42 @@ class PollController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $poll = new poll;
+
+        $poll->title = $request->title;
+
+        if ($request->chacking == 1) {
+            $poll->ip_duplicate = 1;
+        } else {
+            $poll->no_duplicate = 1;
+        }
+        if ($request->multiple == 'on') {
+            $poll->multiple = 1;
+        } else {
+            $poll->multiple = 0;
+        }
+        $poll->save();
+        
+
+
+
+
+        $options = $request->options;
+        array_pop($options);
+
+        foreach($options as $option){
+            $pollOption = new pollOption;
+            $pollOption->poll_id= $poll->id;
+            $pollOption->name= $option;
+            $pollOption->save();
+            
+        }
+
+
+
+
+        return $request;
     }
 
     /**

@@ -16,9 +16,9 @@ class CreatePollsTable extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->boolean('ip_duplicate');
-            $table->boolean('browser_duplicate');
-            $table->boolean('no_duplicate');
+            $table->boolean('ip_duplicate')->default(0);
+            $table->boolean('browser_duplicate')->default(0);
+            $table->boolean('no_duplicate')->default(0);
             $table->boolean('multiple');
             $table->timestamps();
         });
