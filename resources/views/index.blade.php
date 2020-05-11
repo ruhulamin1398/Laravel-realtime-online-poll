@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>Bootstrap Example</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-
+@extends('layout.app');
+@section('content')
 
 
 
@@ -19,17 +7,27 @@
   <div class="container">
 
     <div class="row">
-      <form action="{{route('polls.store')}}" method="POST">
+
+
+
+    <div class="col-3"></div>
+
+
+    <div class="col-xl-6 col-l-6 col-md-6 col-sm-12  bg-light p-md-4 p-lg-4  rounded">
+
+
+    <form action="{{route('polls.store')}}" method="POST" id="pollCreateForm" >
         @csrf
-
-
+        
         <div class="input-group mb-3 input-group-lg">
-
           <input type="text" class="form-control"  name="title" placeholder="Type your question here">
         </div>
 
+        <div >
+          <input class=" form-control d-flex mt-4 "  name="options[]" placeholder="Enter your option" >
+        </div>
         <div id="initRow">
-          <input name="options[]" placeholder="Enter your option" size="50">
+          <input class=" form-control d-flex mt-2 "  name="options[]" placeholder="Enter your option" >
         </div>
         <br><br>
     
@@ -38,60 +36,26 @@
            <option selected="selected" value="1">IP Duplication Checking</option>
           <option value="0">No Duplication Checking</option>
         </select>
-      <br>
+        <br>   <br>
       
         <div class="custom-control custom-switch">
           <input type="checkbox" class="custom-control-input" id="switch1" name="multiple">
           <label class="custom-control-label" for="switch1">Allow multiple poll answers</label>
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+<br>
+        <button type="button" class="btn btn-primary d-flex flex-right " id= "pollCreateSubmit" >Submit</button>
       </form>
+
+
+    </div>
+
+
+    <div class="col-3"></div>
+
+
+
     </div>
   </div>
 
 
-
-
-
-  <script>
-    function addRow(section, initRow) {
-      var newRow = initRow.clone().removeAttr('id').addClass('new').insertBefore(initRow),
-        deleteRow = $('<a class="rowDelete"><img src="http://i.imgur.com/ZSoHl.png"></a>');
-
-      newRow
-        .append(deleteRow)
-        .on('click', 'a.rowDelete', function() {
-          removeRow(newRow);
-        })
-        .slideDown(300, function() {
-          $(this)
-            .find('input').focus();
-        })
-    }
-
-    function removeRow(newRow) {
-      newRow
-        .slideUp(200, function() {
-          $(this)
-            .next('div:not(#initRow)')
-            .find('input').focus()
-            .end()
-            .end()
-            .remove();
-        });
-    }
-
-    $(function() {
-      var initRow = $('#initRow'),
-        section = initRow.parent('section');
-
-      initRow.on('focus', 'input', function() {
-        addRow(section, initRow);
-      });
-    });
-  </script>
-
-</body>
-
-</html>
+@endsection

@@ -54,10 +54,6 @@ class PollController extends Controller
         }
         $poll->save();
         
-
-
-
-
         $options = $request->options;
         array_pop($options);
 
@@ -69,10 +65,7 @@ class PollController extends Controller
             
         }
 
-
-
-
-        return $request;
+        return redirect(route('polls.show',$poll->id));
     }
 
     /**
@@ -83,7 +76,7 @@ class PollController extends Controller
      */
     public function show(poll $poll)
     {
-        //
+        return view('show',compact('poll'));
     }
 
     /**
