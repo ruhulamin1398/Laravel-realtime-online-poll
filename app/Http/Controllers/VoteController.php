@@ -42,12 +42,17 @@ class VoteController extends Controller
         $vote->ip = request()->ip();
         $vote->save();
 
+        $i=0;
         foreach($request->vote as $id){
+            $i++;
             $option=  pollOption::find($id);
             $option ->count +=1;;
             $option->save();
 
         }
+  $poll= poll::find($request->poll_id);
+  $poll->total_votes += $i;
+  $poll->save();
 
         return $request;
     }
@@ -116,11 +121,8 @@ class VoteController extends Controller
      
         
       $options =  $poll->options;
-      return $options;
-      foreach($options as $option)
-      {
-          print_r($option->count);
-      }
+      return compact('poll','options');
+ 
       
     }
 

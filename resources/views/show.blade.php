@@ -44,8 +44,8 @@
                 <tr>
                   <th scope="row">
                     <div class="custom-control custom-checkbox mb-3">
-                      <input type="checkbox" class="custom-control-input" id="customCheck{{$option->name}}" name="vote[]" value="{{$option->id}}" >
-                      <label class="custom-control-label" for="customCheck{{$option->name}}">{{$option->name}}</label>
+                      <input type="checkbox" class="custom-control-input" id="customCheck{{$option->id}}" name="vote[]" value="{{$option->id}}" >
+                      <label class="custom-control-label" for="customCheck{{$option->id}}">{{$option->name}}</label>
                     </div>
                   </th>
 
@@ -56,8 +56,8 @@
                 <tr>
                   <th scope="row">
                     <div class="custom-control custom-radio mb-3">
-                      <input type="radio" class="custom-control-input" id="customCheck{{$option->name}}" name="vote[]" value="{{$option->id}}" >
-                      <label class="custom-control-label" for="customCheck{{$option->name}}">{{$option->name}}</label>
+                      <input type="radio" class="custom-control-input" id="customCheck{{$option->id}}" name="vote[]" value="{{$option->id}}" >
+                      <label class="custom-control-label" for="customCheck{{$option->id}}">{{$option->name}}</label>
                     </div>
                   </th>
 

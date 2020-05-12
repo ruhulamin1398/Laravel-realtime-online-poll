@@ -20,6 +20,7 @@ class CreatePollsTable extends Migration
             $table->boolean('browser_duplicate')->default(0);
             $table->boolean('no_duplicate')->default(0);
             $table->boolean('multiple');
+            $table->unsignedBigInteger('total_votes')->default(0);
             $table->timestamps();
         });
     }

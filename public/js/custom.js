@@ -66,24 +66,20 @@ $(document).ready(function () {
 
 
 
-  var votes = 0;
+  
   function showResult() {
-    votes = 0;
+   
 
     var link = $('#indexLink').val().trim() + '/result/' + $('#pollId').val().trim();
-    console.log("result");
-    console.log(link);
+    // console.log("result");
+    // console.log(link);
 
 
-    $.get(link, function (options) {
-      console.log(options);
-      $.each(options, function (i) {
-        votes += options[i].count;
-        console.log(votes);
-        $('#totalVotes').text(votes + ' Votes ');
-      });
-
-
+    $.get(link, function (data) {
+       console.log(data.poll.total_votes);
+  
+var votes= data.poll.total_votes;
+      $('#totalVotes').text(votes + ' Votes ');
 
 
 
@@ -92,6 +88,7 @@ $(document).ready(function () {
       // console.log ('all votes ');
 
       var html = '';
+var options  = data.options;
       $.each(options, function (i) {
         html += '<tr> <th scope="row">    <div >      <div class=" d-flex  justify-content-start">' + options[i].name + ' </div>      <div class=" d-flex   justify-content-end">' + options[i].count + ' votes </div>  </div>     <div class="progress"> <div class="progress-bar progress-bar-striped bg-dark" style="width:' + (options[i].count / votes) * 100 + '%"> </div>    ' + ((options[i].count / votes) * 100).toFixed(2) + ' %    </div> </th></tr>';
 
@@ -110,7 +107,68 @@ $(document).ready(function () {
     $('#resultArea').show();
 
 
+  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  function updateResult() {
+   
+
+    var link = $('#indexLink').val().trim() + '/result/' + $('#pollId').val().trim();
+    // console.log("result");
+    // console.log(link);
+
+
+    $.get(link, function (data) {
+       console.log(data.poll.total_votes);
+  
+var votes= data.poll.total_votes;
+      $('#totalVotes').text(votes + ' Votes ');
+
+
+
+      // console.log ('all votes ');
+      // console.log(votes);
+      // console.log ('all votes ');
+
+      var html = '';
+var options  = data.options;
+      $.each(options, function (i) {
+        html += '<tr> <th scope="row">    <div >      <div class=" d-flex  justify-content-start">' + options[i].name + ' </div>      <div class=" d-flex   justify-content-end">' + options[i].count + ' votes </div>  </div>     <div class="progress"> <div class="progress-bar progress-bar-striped bg-dark" style="width:' + (options[i].count / votes) * 100 + '%"> </div>    ' + ((options[i].count / votes) * 100).toFixed(2) + ' %    </div> </th></tr>';
+
+      });
+      $('#resultPreview').html(html);
+
+    });
+
   }
+
+
+  setInterval(updateResult, 600);
+
+
+
+
+
+
+
+
+
 
 
 
@@ -146,7 +204,8 @@ $(document).ready(function () {
           url: form.attr('action'),
           data: form.serialize(),
           success: function (data) {
-            console.log(data);
+            console.log(data); 
+            
           },
           error: function (data) {
             console.log(data);
