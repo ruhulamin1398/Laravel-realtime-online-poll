@@ -4,7 +4,7 @@
 
 
 
-  <div class="container">
+  <div class="container mt-4">
 
     <div class="row">
 
@@ -20,12 +20,16 @@
         @csrf
         
         <div class="input-group mb-3 input-group-lg">
-          <input type="text" class="form-control"  name="title" placeholder="Type your question here">
+          <input type="text" class="form-control"  name="title" placeholder="Type your question here" required >
         </div>
 
         <div >
-          <input class=" form-control d-flex mt-4 "  name="options[]" placeholder="Enter your option" >
+          <input class=" form-control d-flex mt-4 "  name="options[]" placeholder="Enter your option" required >
         </div>
+        <div >
+          <input class=" form-control d-flex mt-2 "  name="options[]" placeholder="Enter your option"  required>
+        </div>
+
         <div id="initRow">
           <input class=" form-control d-flex mt-2 "  name="options[]" placeholder="Enter your option" >
         </div>
@@ -43,7 +47,7 @@
           <label class="custom-control-label" for="switch1">Allow multiple poll answers</label>
         </div>
 <br>
-        <button type="button" class="btn btn-primary d-flex flex-right " id= "pollCreateSubmit" >Submit</button>
+        <button type="submit" class="btn btn-primary d-flex flex-right " id= "pollCreateSubmit" >Submit</button>
       </form>
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\poll;
+use App\pollOption;
 use App\vote;
 use Illuminate\Http\Request;
 
@@ -35,7 +37,19 @@ class VoteController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $vote = new vote;
+        $vote->poll_id = $request->poll_id;
+        $vote->ip = request()->ip();
+        $vote->save();
+
+        foreach($request->vote as $id){
+            $option=  pollOption::find($id);
+            $option ->count +=1;;
+            $option->save();
+
+        }
+
+        return $request;
     }
 
     /**
@@ -82,4 +96,34 @@ class VoteController extends Controller
     {
         //
     }
+
+    public function ablToVote(poll $poll)
+    {
+        if ($poll->ip_duplicate == 1) {
+
+            $able = vote::where('poll_id', $poll->id)
+            ->where('ip', request()->ip()  );
+            if ($able->count() != 0) {
+                return 0;
+            }
+        }
+
+
+        return 1;
+    }
+    public function result(poll $poll)
+    {
+     
+        
+      $options =  $poll->options;
+      return $options;
+      foreach($options as $option)
+      {
+          print_r($option->count);
+      }
+      
+    }
+
+
+
 }

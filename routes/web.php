@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    
     return view('index');
-});
+})->name('index');
 
 Route::resource('polls','PollController');
+Route::resource('votes','VoteController');
+Route::get('able-to-vote/{poll}','VoteController@ablToVote')->name('ablToVote');
+Route::get('result/{poll}','VoteController@result')->name('result');

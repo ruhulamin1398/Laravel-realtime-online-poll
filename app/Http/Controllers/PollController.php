@@ -6,6 +6,7 @@ use App\poll;
 use App\pollOption;
 
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Null_;
 
 class PollController extends Controller
 {
@@ -53,19 +54,20 @@ class PollController extends Controller
             $poll->multiple = 0;
         }
         $poll->save();
-        
+
         $options = $request->options;
         array_pop($options);
 
-        foreach($options as $option){
-            $pollOption = new pollOption;
-            $pollOption->poll_id= $poll->id;
-            $pollOption->name= $option;
-            $pollOption->save();
-            
+        foreach ($options as $option) {
+            if ($option != Null) {
+                $pollOption = new pollOption;
+                $pollOption->poll_id = $poll->id;
+                $pollOption->name = $option;
+                $pollOption->save();
+            }
         }
 
-        return redirect(route('polls.show',$poll->id));
+        return redirect(route('polls.show', $poll->id));
     }
 
     /**
@@ -76,7 +78,7 @@ class PollController extends Controller
      */
     public function show(poll $poll)
     {
-        return view('show',compact('poll'));
+        return view('show', compact('poll'));
     }
 
     /**

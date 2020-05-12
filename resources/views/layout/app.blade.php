@@ -9,14 +9,24 @@
 </head>
 
 <body>
+  <input type="text"  id="indexLink" value="{{route('index')}}" hidden >
 
 
 <nav class="navbar   justify-content-between">
   <a class="navbar-brand"></a>
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="poll id" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">GO</button>
+ <span>
+
+ <form class="form-inline">
+ <span class="btn btn-success mr-4"> <a href="{{route('index')}}" class="text-light">Create a poll</a></span>
+    <input class="form-control mr-sm-2" id="searchText"   type="number" placeholder="poll id" aria-label="Search"> <span class="btn btn-success "> <a id="searchLink"   class="text-light" > GO</a></span>
   </form>
+
+ </span>
+</nav>
+
+<nav class="navbar justify-content-center   mb-4">
+                <a class="navbar-brand" href="{{route('index')}}" > <img   src="{{asset('Abasas.com logo.png')}}" alt="{{route('index')}}" style="height:80px;"> </a>
+
 </nav>
 
 
